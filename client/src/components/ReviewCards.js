@@ -1,26 +1,40 @@
 import { Row, Col, Card, Button } from 'react-bootstrap';
 import { AiFillDelete, AiOutlineEdit } from 'react-icons/ai';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Axios from 'axios'
 import UpdateForm from './UpdateForm';
 
 export default function ReviewCards(props) {
 
     const [showUpDForm, setShowUpDForm] = useState(false)
+    const [reviewData, setReviewData] = useState([])
+    const [singleRData, setSingleRData] = useState([])
+
+    useEffect(()=>{
+        getData()
+    })
+
+    const getData = async () =>{
+        const url = await fetch('http://localhost:3001/')
+        const data = await url.json()
+        setReviewData(data)
+    }
 
     const deleteProject = (id) => {
-        console.log('project deleted')
         Axios.delete(`http://localhost:3001/deleteproject/${id}`)
     }
 
-    const updateProject = () => {
-        console.log('update project')
-        setShowUpDForm(prevShowUpDForm => !prevShowUpDForm)
+    const openUpdateForm = () => {
+        setShowUpDForm(true)
+    }
+
+    const closeUpdateForm = () => {
+        setShowUpDForm(false)
     }
 
     return (
         <Row xs={1} md={3} lg={4} className="review-cards-container g-4 text-light ">
-            {props.information.map((info,i) => (
+            {reviewData.map((info,i) => (
                 <Col key={i}>
                     <Card className='bg-dark border-white'>
                         <Card.Img variant="top" src="holder.js/100px160" />
@@ -36,13 +50,17 @@ export default function ReviewCards(props) {
                             </Button>
                             <Button variant="outline-success" onClick={(e)=>{
                                 e.preventDefault()
-                                updateProject()
+                                setSingleRData(info)
+                                openUpdateForm()
                                 }}><AiOutlineEdit/></Button>
                         </div>
                     </Card>
+                    {!showUpDForm? "":<UpdateForm
+                        projectInfo={singleRData}
+                        closeUpdate={closeUpdateForm}
+                    />}
                 </Col>
             ))}
-            {!showUpDForm? "":<UpdateForm/>}
         </Row>
     )
 }
