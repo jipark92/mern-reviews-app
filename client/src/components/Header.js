@@ -1,8 +1,9 @@
 import { Navbar, Nav,NavDropdown, Form, FormControl, Container, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom'
 
 export default function Header() {
     return (
-        <Navbar expand="lg" bg="dark" variant="dark" sticky="top">
+        <Navbar className='py-3 px-3' expand="lg" bg="dark" variant="dark">
             <Container fluid>
                 <Navbar.Brand>Reviews App</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
@@ -12,13 +13,21 @@ export default function Header() {
                     style={{ maxHeight: '100px' }}
                     navbarScroll
                 >
-                    <Nav.Link href="#action1">Home</Nav.Link>
-                    {/* <Nav.Link href="#action2">Link</Nav.Link> */}
+                <Link to='/'>
+                    <Nav.Link className='text-light' disabled>Home</Nav.Link>
+                </Link>
+                    {/* <Nav.Link>Refresh</Nav.Link> */}
                     <NavDropdown title="Action" id="navbarScrollingDropdown">
-                        <NavDropdown.Item href="#action3">Upload</NavDropdown.Item>
-                        <NavDropdown.Item href="#action4">Contact</NavDropdown.Item>
+                        <Link to='/upload'>
+                            <NavDropdown.Item className='text-dark' disabled>Upload</NavDropdown.Item>
+                        </Link>
+                        <Link to='/contact'>
+                            <NavDropdown.Item className='text-dark' disabled>Contact</NavDropdown.Item>
+                        </Link>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action5">FAQ</NavDropdown.Item>
+                        <Link to='/faq'>
+                            <NavDropdown.Item className='text-dark' disabled>FAQ</NavDropdown.Item>
+                        </Link>
                     </NavDropdown>
                 </Nav>
                 <Form className="d-flex">
