@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-
 const ReviewModel = require('../model/Reviews')
 
 //read
@@ -23,12 +22,26 @@ router.post('/newproject', async (req,res)=>{
 })
 
 //delete
-router.delete('/deleteproject/:id',(req,res)=>{
+router.delete('/deleteproject/:id',async (req,res)=>{
     const id = req.params.id
-    ReviewModel.findByIdAndDelete(id).exec()
+    await ReviewModel.findByIdAndDelete(id).exec()
 })
 
-
 //update
+router.put('/updateproject',(req,res)=>{
+    const id = req.body.id
+    const newTitle = req.body.newTitle
+    const newDescription = req.body.newDescription
+
+    try {
+        ReviewModel.findById(id,(err,result)=>{
+            result.title = newTitle
+            result.description = newDescription
+            result.save()
+        })
+    } catch (error) {
+        console.log('error')
+    }
+})
 
 module.exports = router
