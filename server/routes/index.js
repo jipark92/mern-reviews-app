@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const mongoose = require('mongoose')
 
 const ReviewModel = require('../model/Reviews')
 
@@ -24,6 +23,11 @@ router.post('/newproject', async (req,res)=>{
 })
 
 //delete
+router.delete('/deleteproject/:id',(req,res)=>{
+    const id = req.params.id
+    ReviewModel.findByIdAndDelete(id).exec()
+})
+
 
 //update
 
