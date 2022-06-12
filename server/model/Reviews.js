@@ -8,7 +8,7 @@ const ReviewsSchema = new mongoose.Schema({
     voteCount:{
         type: Number
     },
-    comment:{
+    description:{
         type:String
     }
 })
