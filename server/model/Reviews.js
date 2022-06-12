@@ -2,12 +2,12 @@ const mongoose = require('mongoose')
 
 const ReviewsSchema = new mongoose.Schema({
     title:{
-        type: String,
-        required: true
+        type: String
+        // required: true
     },
-    voteCount:{
-        type: Number
-    },
+    // voteCount:{
+    //     type: Number
+    // },
     description:{
         type:String
     }
