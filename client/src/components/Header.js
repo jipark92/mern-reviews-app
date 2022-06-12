@@ -18,7 +18,7 @@ export default function Header() {
                 </Link>
                     {/* <Nav.Link>Refresh</Nav.Link> */}
                     <NavDropdown title="Action" id="navbarScrollingDropdown">
-                        <Link to='/upload'>
+                        <Link to='/newproject'>
                             <NavDropdown.Item className='text-dark' disabled>Upload</NavDropdown.Item>
                         </Link>
                         <Link to='/contact'>

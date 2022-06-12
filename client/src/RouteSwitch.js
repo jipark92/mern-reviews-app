@@ -9,7 +9,7 @@ export default function RouteSwitch() {
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<Reviews/>}/>
-                <Route path='/upload' element={<Upload/>}/>
+                <Route path='/newproject' element={<Upload/>}/>
                 <Route path='/contact' element={<Contact/>}/>
                 <Route path='/faq' element={<Faq/>}/>
             </Routes>

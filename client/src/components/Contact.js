@@ -8,6 +8,7 @@ export default function Contact() {
             <Header/>
                 <form className="contact-form-container bg-dark ">
                     <div className="col-md-5 mx-auto">
+                        <legend className='text-light'>Send Contact Form</legend>
                         <FloatingLabel
                             controlId="floatingInput"
                             label="Email address"
