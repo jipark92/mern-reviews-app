@@ -8,10 +8,8 @@ app.use(express.json())
 
 let indexRouter = require('./routes/index')
 
-// mongoose.connect('')
+mongoose.connect('mongodb+srv://norf:norf@cluster0.fcxk5lk.mongodb.net/reviews?retryWrites=true&w=majority')
 
 app.use('/',indexRouter)
-
-
 
 app.listen(3001, ()=>{console.log('connected to port 3001')})
