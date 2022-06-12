@@ -1,8 +1,11 @@
 import { Form, Button, Stack } from 'react-bootstrap';
 import { useState } from 'react'
 import Axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export default function UploadForm() {
+
+    const navigate = useNavigate()
 
     const [title, setTitle] = useState()
     const [description, setDescription] = useState()
@@ -12,6 +15,7 @@ export default function UploadForm() {
             title: title,
             description: description
         })
+        alert('project added')
     }
 
     return (
@@ -30,6 +34,7 @@ export default function UploadForm() {
                     <Button variant="success" onClick={(e)=>{
                         e.preventDefault()
                         uploadProject()
+                        navigate('/')
                     }}>Upload</Button>
                 </Stack>
             </Form>

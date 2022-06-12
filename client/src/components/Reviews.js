@@ -6,7 +6,6 @@ import {useState, useEffect} from 'react'
 export default function Reviews() {
 
     const [reviewData, setReviewData] = useState([])
-    // const [refreshData, setRefreshData] = useState(0)
 
     useEffect(()=>{
         getData()
@@ -17,7 +16,7 @@ export default function Reviews() {
         const data = await url.json()
         setReviewData(data)
     }
-    
+
     return (
         <main className="bg-dark text-light">
             <Header/>

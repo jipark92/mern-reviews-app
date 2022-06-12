@@ -2,3 +2,10 @@
     padding: 2.5rem;
     height: 85vh;
 }
+
+.action-btn-container{
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding: 1rem;
+}

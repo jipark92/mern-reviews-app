@@ -8,6 +8,7 @@ import './css/footer.css';
 import './css/uploadform.css'
 import './css/contact.css'
 import './css/faq.css'
+import './css/updateform.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
