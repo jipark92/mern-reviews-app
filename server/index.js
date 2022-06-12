@@ -12,4 +12,4 @@ mongoose.connect('mongodb+srv://norf:norf@cluster0.fcxk5lk.mongodb.net/reviews?r
 
 app.use('/',indexRouter)
 
-app.listen(3001, ()=>{console.log('connected to port 3001')})
+app.listen(process.env.PORT || 3001, ()=>{console.log('connected to port 3001')})
