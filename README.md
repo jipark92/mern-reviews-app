@@ -1,3 +1,3 @@
 MERN Stack Reviews App
 
-Demo: 
+Demo: https://mern-reviews-app.netlify.app/
