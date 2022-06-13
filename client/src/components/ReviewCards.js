@@ -37,10 +37,10 @@ export default function ReviewCards(props) {
             {reviewData.map((info,i) => (
                 <Col key={i}>
                     <Card className='bg-dark border-white'>
-                        <Card.Img variant="top" src="holder.js/100px160" />
+                        <Card.Img className='project-img' variant="top" src={info.imageURL} />
                         <Card.Body>
-                            <Card.Title>{info.title}</Card.Title>
-                            <Card.Text>{info.description}</Card.Text>
+                            <Card.Title>Title: {info.title}</Card.Title>
+                            <Card.Text>Description: {info.description}</Card.Text>
                         </Card.Body>
                         <div className='action-btn-container'>
                             <Button variant="outline-danger" onClick={(e)=>{
