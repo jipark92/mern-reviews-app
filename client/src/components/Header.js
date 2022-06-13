@@ -33,9 +33,10 @@ export default function Header() {
                 <Form className="d-flex">
                     <FormControl
                     type="search"
-                    placeholder="Search"
+                    placeholder="DISABLED. FILTER FUNCTION"
                     className="me-2"
                     aria-label="Search"
+                    disabled
                     />
                     <Button variant="outline-success">Search</Button>
                 </Form>

@@ -1,5 +1,6 @@
 import { Row, Col, Card, Button } from 'react-bootstrap';
 import { AiFillDelete, AiOutlineEdit } from 'react-icons/ai';
+import { FaRegThumbsDown, FaRegThumbsUp } from 'react-icons/fa';
 import { useState, useEffect } from 'react'
 import Axios from 'axios'
 import UpdateForm from './UpdateForm';
@@ -9,6 +10,7 @@ export default function ReviewCards(props) {
     const [showUpDForm, setShowUpDForm] = useState(false)
     const [reviewData, setReviewData] = useState([])
     const [singleRData, setSingleRData] = useState([])
+    const [counter, setCounter] = useState(0)
 
     useEffect(()=>{
         getData()
@@ -32,6 +34,17 @@ export default function ReviewCards(props) {
         setShowUpDForm(false)
     }
 
+    const voteUp = () => {
+        console.log('vote up')
+        setCounter(prevCount=> prevCount + 1)
+    }
+
+    const voteDown = () => {
+        console.log('vote down')
+        setCounter(prevCount=> prevCount - 1)
+
+    }
+
     return (
         <Row xs={1} md={3} lg={4} className="review-cards-container g-4 text-light ">
             {reviewData.map((info,i) => (
@@ -42,17 +55,28 @@ export default function ReviewCards(props) {
                             <Card.Title>Title: {info.title}({info.date})</Card.Title>
                             <Card.Text>Description: {info.description}</Card.Text>
                         </Card.Body>
+                        
                         <div className='action-btn-container'>
-                            <Button variant="outline-danger" onClick={(e)=>{
-                                e.preventDefault()
-                                deleteProject(info._id)
-                                }}><AiFillDelete/>
-                            </Button>
-                            <Button variant="outline-success" onClick={(e)=>{
-                                e.preventDefault()
-                                setSingleRData(info)
-                                openUpdateForm()
-                                }}><AiOutlineEdit/></Button>
+                            <div className='vote-container'>
+                                <Button variant="outline-warning" onClick={voteDown}><FaRegThumbsDown/></Button>
+                                <p>{counter}</p>      {/*{info.counter} */}
+                                <Button variant="outline-primary" onClick={voteUp}><FaRegThumbsUp/></Button>
+                            </div>
+                            <div className='edit-del-container'>
+                                <Button variant="outline-danger" onClick={(e)=>{
+                                    e.preventDefault()
+                                    deleteProject(info._id)
+                                    }}><AiFillDelete/>
+                                </Button>
+                                <Button variant="outline-success" onClick={(e)=>{
+                                    e.preventDefault()
+                                    setSingleRData(info)
+                                    openUpdateForm()
+                                    }}><AiOutlineEdit/>
+                                </Button>
+                            </div>
+
+                            
                         </div>
                     </Card>
                     {!showUpDForm? "":<UpdateForm
