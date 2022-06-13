@@ -9,6 +9,9 @@ const ReviewsSchema = new mongoose.Schema({
     },
     description:{
         type:String
+    },
+    date:{
+        type:String
     }
 })
 

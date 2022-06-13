@@ -42,12 +42,14 @@ router.put('/updateproject',(req,res)=>{
     const newTitle = req.body.newTitle
     const newImgUrl = req.body.newImgUrl
     const newDescription = req.body.newDescription
+    const newDate = req.body.newDate
 
     try {
         ReviewModel.findById(id,(err,result)=>{
             result.title = newTitle
             result.imageURL = newImgUrl
             result.description = newDescription
+            result.date = newDate
             result.save()
         })
     } catch (error) {
