@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const ReviewModel = require('../model/Reviews')
+const ContactModel = require('../model/Contact')
 
 //read
 router.get('/',(req,res)=>{
@@ -13,12 +14,20 @@ router.get('/',(req,res)=>{
     })
 })
 
-//post
+//post new project
 router.post('/newproject', async (req,res)=>{
     const addNewProject = req.body
     const newProject = new ReviewModel(addNewProject)
     await newProject.save()
     res.json(addNewProject)
+})
+
+//post new contact 
+router.post('/contact', async (req,res)=>{
+    const addNewContact = req.body
+    const newContact = new ContactModel(addNewContact)
+    await newContact.save()
+    res.json(addNewContact)
 })
 
 //delete
@@ -31,11 +40,13 @@ router.delete('/deleteproject/:id',async (req,res)=>{
 router.put('/updateproject',(req,res)=>{
     const id = req.body.id
     const newTitle = req.body.newTitle
+    const newImgUrl = req.body.newImgUrl
     const newDescription = req.body.newDescription
 
     try {
         ReviewModel.findById(id,(err,result)=>{
             result.title = newTitle
+            result.imageURL = newImgUrl
             result.description = newDescription
             result.save()
         })

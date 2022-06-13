@@ -3,11 +3,10 @@ const mongoose = require('mongoose')
 const ReviewsSchema = new mongoose.Schema({
     title:{
         type: String
-        // required: true
     },
-    // voteCount:{
-    //     type: Number
-    // },
+    imageURL:{
+        type: String
+    },
     description:{
         type:String
     }
