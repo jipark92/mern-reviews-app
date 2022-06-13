@@ -12,6 +12,9 @@ const ReviewsSchema = new mongoose.Schema({
     },
     date:{
         type:String
+    },
+    counter:{
+        type: Number
     }
 })
 
