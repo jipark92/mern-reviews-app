@@ -11,13 +11,18 @@ export default function Contact() {
 
     const [email, setEmail] = useState()
     const [comment, setComment] = useState()
+    const [name, setName] = useState()
+    const [date, setDate] = useState()
 
     const submitContact = () => {
         console.log('contact submitted')
         Axios.post('http://localhost:3001/contact',{
             email: email,
-            comment: comment
+            comment: comment,
+            name: name,
+            date: date
         })
+        alert('contact sent!')
     }
 
     return (
@@ -26,6 +31,14 @@ export default function Contact() {
                 <form className="contact-form-container bg-dark ">
                     <div className="col-md-5 mx-auto">
                         <legend className='text-light'>Send Contact Form</legend>
+                        <FloatingLabel
+                            controlId="floatingInput"
+                            label="Full Name"
+                            className="mb-3"
+                        >
+                            <Form.Control type="text" placeholder="full name" onChange={(e)=>setName(e.target.value)}/>
+                        </FloatingLabel>
+
                         <FloatingLabel
                             controlId="floatingInput"
                             label="Email address"
@@ -41,6 +54,14 @@ export default function Contact() {
                             placeholder="Leave a comment here"
                             style={{ height: '100px' }}
                             />
+                        </FloatingLabel>
+
+                        <FloatingLabel
+                            controlId="floatingInput"
+                            label="date"
+                            className="mb-3"
+                        >
+                            <Form.Control type="date" onChange={(e)=>setDate(e.target.value)}/>
                         </FloatingLabel>
 
                         <div className="d-grid gap-2">

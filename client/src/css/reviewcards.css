@@ -13,3 +13,8 @@
 .project-img{
     height: 250px;
 }
+
+.cards{
+    height: 500px;
+    overflow-y: auto;
+}

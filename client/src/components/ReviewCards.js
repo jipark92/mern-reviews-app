@@ -36,10 +36,10 @@ export default function ReviewCards(props) {
         <Row xs={1} md={3} lg={4} className="review-cards-container g-4 text-light ">
             {reviewData.map((info,i) => (
                 <Col key={i}>
-                    <Card className='bg-dark border-white'>
+                    <Card className='cards bg-dark border-white'>
                         <Card.Img className='project-img' variant="top" src={info.imageURL} />
                         <Card.Body>
-                            <Card.Title>Title: {info.title}</Card.Title>
+                            <Card.Title>Title: {info.title}({info.date})</Card.Title>
                             <Card.Text>Description: {info.description}</Card.Text>
                         </Card.Body>
                         <div className='action-btn-container'>
