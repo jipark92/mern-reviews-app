@@ -44,3 +44,12 @@
 .pls-login{
     text-align: center;
 }
+
+.profile-info{
+    display: flex;
+    align-items: center;
+}
+
+.profile-pic{
+    height: 50px;
+}

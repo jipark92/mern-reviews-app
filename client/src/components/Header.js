@@ -6,7 +6,7 @@ export default function Header() {
 
     const { loginWithRedirect, logout, isAuthenticated, user , isLoading} = useAuth0()
 
-    if(isLoading) return <div>Loading...</div>
+    // if(isLoading) return <div>Loading...</div>
 
     return (
         <Navbar className='py-3 px-3' expand="lg" bg="dark" variant="dark">
@@ -37,6 +37,7 @@ export default function Header() {
                     </NavDropdown>
                 </Nav>
                 <Form className="d-flex" >
+                    {isAuthenticated && (<div className='profile-info'><p>{user.name}</p><img src={user.picture} alt={user.name} className="profile-pic"/></div> )}
                     {isAuthenticated && (<Button className='mx-2' onClick={()=>logout()}>Logout</Button>) || (<Button onClick={()=>loginWithRedirect()}>Login</Button>)}
                     {/* <p className='text-light'>{JSON.stringify(user,null,2)}</p> */}
                     {/* <FormControl
