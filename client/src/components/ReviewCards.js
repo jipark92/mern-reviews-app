@@ -2,10 +2,13 @@ import { Row, Col, Card, Button } from 'react-bootstrap';
 import { AiFillDelete, AiOutlineEdit } from 'react-icons/ai';
 import { FaRegThumbsDown, FaRegThumbsUp } from 'react-icons/fa';
 import { useState, useEffect } from 'react'
+import {useAuth0} from '@auth0/auth0-react'
 import Axios from 'axios'
 import UpdateForm from './UpdateForm';
 
 export default function ReviewCards(props) {
+
+    const {isAuthenticated} = useAuth0()
 
     const [showUpDForm, setShowUpDForm] = useState(false)
     const [reviewData, setReviewData] = useState([])
@@ -42,7 +45,6 @@ export default function ReviewCards(props) {
     const voteDown = () => {
         console.log('vote down')
         setCounter(prevCount=> prevCount - 1)
-
     }
 
     return (
@@ -56,12 +58,16 @@ export default function ReviewCards(props) {
                             <Card.Text>Description: {info.description}</Card.Text>
                         </Card.Body>
                         
+                        {!isAuthenticated?<p className='pls-login' style={{"color":"yellow"}}>PLEASE LOGIN TO EDIT/DELETE POST</p>:""}
+
                         <div className='action-btn-container'>
                             <div className='vote-container'>
                                 <Button variant="outline-warning" onClick={voteDown}><FaRegThumbsDown/></Button>
                                 <p>{counter}</p>      {/*{info.counter} */}
                                 <Button variant="outline-primary" onClick={voteUp}><FaRegThumbsUp/></Button>
                             </div>
+                            
+                            {isAuthenticated &&(
                             <div className='edit-del-container'>
                                 <Button variant="outline-danger" onClick={(e)=>{
                                     e.preventDefault()
@@ -74,8 +80,7 @@ export default function ReviewCards(props) {
                                     openUpdateForm()
                                     }}><AiOutlineEdit/>
                                 </Button>
-                            </div>
-
+                            </div>)}
                             
                         </div>
                     </Card>

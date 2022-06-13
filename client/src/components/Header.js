@@ -1,7 +1,13 @@
 import { Navbar, Nav,NavDropdown, Form, FormControl, Container, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
+import {useAuth0} from '@auth0/auth0-react'
 
 export default function Header() {
+
+    const { loginWithRedirect, logout, isAuthenticated, user , isLoading} = useAuth0()
+
+    if(isLoading) return <div>Loading...</div>
+
     return (
         <Navbar className='py-3 px-3' expand="lg" bg="dark" variant="dark">
             <Container fluid>
@@ -30,15 +36,17 @@ export default function Header() {
                         </Link>
                     </NavDropdown>
                 </Nav>
-                <Form className="d-flex">
-                    <FormControl
+                <Form className="d-flex" >
+                    {isAuthenticated && (<Button className='mx-2' onClick={()=>logout()}>Logout</Button>) || (<Button onClick={()=>loginWithRedirect()}>Login</Button>)}
+                    {/* <p className='text-light'>{JSON.stringify(user,null,2)}</p> */}
+                    {/* <FormControl
                     type="search"
                     placeholder="DISABLED. FILTER FUNCTION"
                     className="me-2"
                     aria-label="Search"
                     disabled
                     />
-                    <Button variant="outline-success">Search</Button>
+                    <Button variant="outline-success">Search</Button> */}
                 </Form>
                 </Navbar.Collapse>
             </Container>

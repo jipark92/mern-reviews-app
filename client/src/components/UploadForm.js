@@ -1,9 +1,12 @@
 import { Form, Button, Stack } from 'react-bootstrap';
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import {useAuth0} from '@auth0/auth0-react'
 import Axios from 'axios'
 
 export default function UploadForm() {
+
+    const {isAuthenticated} = useAuth0()
 
     const navigate = useNavigate()
 
@@ -22,7 +25,9 @@ export default function UploadForm() {
         alert('project added')
     }
 
-    return (
+    if(!isAuthenticated) return <div className='upload-form-container bg-dark text-light'><h3 style={{"color":"yellow"}}>PLEASE LOGIN TO UPLOAD</h3></div>
+
+    return (isAuthenticated && (
         <div className='upload-form-container bg-dark'>
             <Form className='upload-form' encType='multipart/form-data'>
                 <legend className='text-light'>Upload Project Form</legend>
@@ -49,6 +54,6 @@ export default function UploadForm() {
                     </Link>
                 </Stack>
             </Form>
-        </div>
+        </div>)
     )
 }
