@@ -58,15 +58,15 @@ export default function ReviewCards(props) {
                             <Card.Text>Description: {info.description}</Card.Text>
                         </Card.Body>
                         
-                        {!isAuthenticated?<p className='pls-login' style={{"color":"yellow"}}>PLEASE LOGIN TO EDIT/DELETE POST</p>:""}
 
                         <div className='action-btn-container'>
-                            <div className='vote-container'>
+                            {/* <div className='vote-container'>
                                 <Button variant="outline-warning" onClick={voteDown}><FaRegThumbsDown/></Button>
-                                <p>{counter}</p>      {/*{info.counter} */}
+                                <p>{counter}</p>     
                                 <Button variant="outline-primary" onClick={voteUp}><FaRegThumbsUp/></Button>
-                            </div>
-                            
+                            </div> */}
+                            {!isAuthenticated?<p className='pls-login' style={{"color":"yellow"}}>PLEASE LOGIN TO EDIT/DELETE POST</p>:""}
+
                             {isAuthenticated &&(
                             <div className='edit-del-container'>
                                 <Button variant="outline-danger" onClick={(e)=>{
